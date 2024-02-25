@@ -33,4 +33,11 @@ router.get('/getAllExpenses', function(req, res) {
   res.status(200).json(serverArray);
 });
 
+/* Add one new expense */
+router.post('/AddExpense', function(req, res) {
+  const newExpense = req.body;
+  serverArray.push(newExpense);
+  res.status(200).json(newExpense);
+});
+
 module.exports = router;

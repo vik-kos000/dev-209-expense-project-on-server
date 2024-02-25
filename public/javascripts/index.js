@@ -3,17 +3,32 @@ let selectedType = "Not selected";
 
 document.addEventListener("DOMContentLoaded", function (event) {
     //pre- populate the array
-    //ExpenseArray.push ( new ExpenseObject("Laptop", 1100, "2004-22-12", "Mall", "School")  );
-    //ExpenseArray.push ( new ExpenseObject("Strawberries", 5, "2006-12-10", "Mall", "Food")  );
-    //ExpenseArray.push ( new ExpenseObject("Blanket", 30, "2005-25-11", "Mall", "Home")  );
+    ExpenseArray.push ( new ExpenseObject("Laptop", 1100, "2004-22-12", "Mall", "School")  );
+    ExpenseArray.push ( new ExpenseObject("Strawberries", 5, "2006-12-10", "Mall", "Food")  );
+    ExpenseArray.push ( new ExpenseObject("Blanket", 30, "2005-25-11", "Mall", "Home")  );
 
-    for (let i = 0; i < ExpenseArray.length; i++) {
-        console.log(ExpenseArray[i].show());
-    }
 
     createList();
 
+    for (let i = 0; i < ExpenseArray.length; i++) {
+            console.log(ExpenseArray[i].show());
+    }
+
+
     document.getElementById("addExpense").addEventListener("click", function () {
+
+        const newExpenseData = newExpense();
+
+        $.ajax({
+            url: "/AddExpense",
+            type: "POST",
+            data: JSON.stringify(newExpenseData),
+            contentType: "application/json; charset=utf-8",
+            success: function (result) {
+                console.log(result);
+                document.location.href = "index.html#ListAll";
+            }
+        });
 
         ExpenseArray.push(newExpense());
 
