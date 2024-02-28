@@ -3,9 +3,9 @@ let selectedType = "Not selected";
 
 document.addEventListener("DOMContentLoaded", function (event) {
     //pre- populate the array
-    ExpenseArray.push ( new ExpenseObject("Laptop", 1100, "2004-22-12", "Mall", "School")  );
-    ExpenseArray.push ( new ExpenseObject("Strawberries", 5, "2006-12-10", "Mall", "Food")  );
-    ExpenseArray.push ( new ExpenseObject("Blanket", 30, "2005-25-11", "Mall", "Home")  );
+    // ExpenseArray.push ( new ExpenseObject("Laptop", 1100, "2004-22-12", "Mall", "School")  );
+    // ExpenseArray.push ( new ExpenseObject("Strawberries", 5, "2006-12-10", "Mall", "Food")  );
+    // ExpenseArray.push ( new ExpenseObject("Blanket", 30, "2005-25-11", "Mall", "Home")  );
 
 
     createList();
@@ -107,22 +107,43 @@ let newExpense = function () {
 function createList() {
     let expenseList = document.getElementById("expenseList");
     expenseList.innerHTML = "";
-
+    //call the server to get the data
     $.get("/getAllExpenses", function(data, status){
-        ExpenseArray = data; 
-    
+        ExpenseArray = data; //pass the data into the ExpenseArray
+   
 
         ExpenseArray.forEach(function (oneExpense) {   
             let li = document.createElement('li');
             li.classList.add('oneExpense');
             li.setAttribute("data-parm", oneExpense.id);
             //edit the listed item into a click able links
-            li.innerHTML = "<a href='#details'>Name of Expense: " + oneExpense.name + ",   Price: $" + oneExpense.price + "</a>"; 
+            //added a "Delete Button"
+            li.innerHTML = "<a href='#details'>Name of Expense: " + oneExpense.name + ",   Price: $" + oneExpense.price + "</a>" + 
+                           "<button class='deleteExpenseBtn' data-id='" + oneExpense.id + "'>Delete</button>"; // Add delete button 
             expenseList.appendChild(li);
         });
 
         $("#expenseList").listview().listview("refresh");
 
+        //add event listener to delete buttons
+        $(".deleteExpenseBtn").click(function(){
+            let expenseId = $(this).data("id");
+            //Send Ajax Delete request to delete the expense
+            $.ajax({
+                url:"/DeleteExpense/" + expenseId,
+                type:"DELETE",
+                success:function(result){
+                    console.log(result);
+                    //remove the deleted expense from expense array 
+                    ExpenseArray = ExpenseArray.filter(expense =>expense.id !== expenseId);
+                    //reload the page to display the update list of expenses
+                    document.location.href="index.html#ListAll";
+                }
+            })
+
+        })
+
+        //add event listener for clicking on expense item
         let liList = document.getElementsByClassName("oneExpense");
         let newExpenseArray = Array.from(liList);
         newExpenseArray.forEach(function (element) {
