@@ -7,18 +7,23 @@
     <title>Expense Tracker</title>
     <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css"/>
     <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+    <link rel="stylesheet" href="stylesheets/themes/my-custom-theme.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="javascripts/index.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+    <link rel="shortcut icon" href="images/myIco.png">
+
 </head>
 
 <body>
 
     <!-- Home Page -->
-    <div data-role="page" id="home">
+    <div data-role="page" id="home" class="ui-page">
         <div data-role="header" data-theme='b'>
+            <h2>Home</h2>
             <div data-role="navbar" data-theme='b'>
                 <ul>
                     <li><a href="#home">Home</a></li>
@@ -26,19 +31,18 @@
                     <li><a href="#list">List</a></li>
                 </ul>
             </div>
-            <h2>Home</h2>
         </div>
             
-        <div data-role="content" data-theme='e'>
+        <div data-role="content" data-theme='b'>
             <div data-role="content">
-                <div class="card">
-                    <div class="card-body">
-                        <h1>Welcome to Expense Tracker!</h1>
-                        <img src="images/expenses.jpg" alt="picture of expense">
-                        <br>
-                        This is the application that will keep track of your expenses.
-                        <a href="#input">Click for input</a>
-                    </div>
+                <div id="card-body">
+                    <h1>Welcome to Expense Tracker!</h1>
+                    <br>
+                    <img src="images/expenses.jpg" alt="picture of expense">
+                    <br>
+                    <br>
+                    This is the application that will keep track of your expenses.
+                    <a href="#input">Click for input</a>
                 </div>
             </div>
         </div>
@@ -49,8 +53,9 @@
     </div>
 
     <!-- Input Page -->
-    <div data-role="page" id="input">
+    <div data-role="page" id="input" class="ui-page">
         <div data-role="header" data-theme='b'>
+            <h2>Input</h2>
             <div data-role="navbar" data-theme='b'>
                 <ul>
                     <li><a href="#home">Home</a></li>
@@ -58,12 +63,13 @@
                     <li><a href="#list">List</a></li>
                 </ul>
             </div>
-            <h2>Input</h2>
         </div>
             
-        <div data-role="content" data-theme='e'>
+        <div data-role="content" data-theme='b'>
             <div class="container">
+                <br>
                 <h1>Enter your expense!</h1>
+                <br>
                 <form id="expenseForm">
                     <label for="name">Name of Expense:</label>
                     <input type="text" id="name" name="name" required>
@@ -100,8 +106,9 @@
     </div>
 
     <!-- List Page -->
-    <div data-role="page" id="list">
+    <div data-role="page" id="list" class="ui-page">
         <div data-role="header" data-theme='b'>
+            <h2>List</h2>
             <div data-role="navbar" data-theme='b'>
                 <ul>
                     <li><a href="#home">Home</a></li>
@@ -109,11 +116,11 @@
                     <li><a href="#list">List</a></li>
                 </ul>
             </div>
-            <h2>List</h2>
         </div>
             
-        <div data-role="content" data-theme='e'>
+        <div data-role="content" data-theme='b'>
             <div class="container">
+                <br>
                 <h1>List of your expense's:</h1>
                 <br>
                 <br>
@@ -129,8 +136,9 @@
     </div>
 
     <!--Added a Detail Page-->
-    <div data-role="page" id="details">
+    <div data-role="page" id="details" class="ui-page">
         <div data-role="header" data-theme='b'>
+            <h2>Expense Details</h2>
             <div data-role="navbar" data-theme='b'>
                 <ul>
                     <li><a href="#home">Home</a></li>
@@ -138,11 +146,11 @@
                     <li><a href="#list">List</a></li>
                 </ul>
             </div>
-            <h2>Expense Details</h2>
         </div>
 
-        <div data-role="content" data-theme='e'>
+        <div data-role="content" data-theme='b'>
             <div class="container">
+                <br>
                 <h1>Expense Detail</h1>
                 <div id="expenseDetail">
                     <br>
@@ -151,8 +159,11 @@
                     <p id="Date"></p>
                     <p id="LocationName"></p>
                     <p id="Category"></p>
-                    <button id="listButton">Back to List</button>
+                    <button id="deleteButton">Delete Expense</button>
                 </div>
+            </div>
+            <div id="listButtonContainer">
+                <button id="listButton">Back to List</button>
             </div>
         </div>
 

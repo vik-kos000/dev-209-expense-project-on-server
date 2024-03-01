@@ -3,21 +3,21 @@ let selectedType = "Not selected";
 
 document.addEventListener("DOMContentLoaded", function (event) {
     //pre- populate the array
-    ExpenseArray.push ( new ExpenseObject("Laptop", 1100, "2004-22-12", "Mall", "School")  );
-    ExpenseArray.push ( new ExpenseObject("Strawberries", 5, "2006-12-10", "Mall", "Food")  );
-    ExpenseArray.push ( new ExpenseObject("Blanket", 30, "2005-25-11", "Mall", "Home")  );
+    //ExpenseArray.push ( new ExpenseObject("Laptop", 1100, "2004-22-12", "Mall", "School")  );
+    //ExpenseArray.push ( new ExpenseObject("Strawberries", 5, "2006-12-10", "Mall", "Food")  );
+    //ExpenseArray.push ( new ExpenseObject("Blanket", 30, "2005-25-11", "Mall", "Home")  );
 
 
     createList();
 
-    for (let i = 0; i < ExpenseArray.length; i++) {
-            console.log(ExpenseArray[i].show());
-    }
+    //for (let i = 0; i < ExpenseArray.length; i++) {
+            //console.log(ExpenseArray[i].show());
+    //}
 
 
     document.getElementById("addExpense").addEventListener("click", function () {
 
-        const newExpenseData = newExpense();
+        let newExpenseData = newExpense();
 
         $.ajax({
             url: "/AddExpense",
@@ -26,13 +26,17 @@ document.addEventListener("DOMContentLoaded", function (event) {
             contentType: "application/json; charset=utf-8",
             success: function (result) {
                 console.log(result);
-                document.location.href = "index.html#ListAll";
+                document.location.href = "index.html#List";
+            },
+            error: function (xhr, textStatus, errorThrown){
+                alert("Server could not add Expense: " + newExpense.name);
+                alert(textStatus + " " + errorThrown);
             }
         });
 
-        ExpenseArray.push(newExpense());
+        //ExpenseArray.push(newExpense());
 
-        console.log(ExpenseArray[ExpenseArray.length - 1].show());
+        //console.log(ExpenseArray[ExpenseArray.length - 1].show());
         
         document.getElementById("name").value = "";
         document.getElementById("price").value = "";
@@ -40,6 +44,8 @@ document.addEventListener("DOMContentLoaded", function (event) {
         document.getElementById("locationName").value = "";
 
         createList();
+
+        document.location.href = "index.html#list";
     });
 
     document.addEventListener("change", function(event) {
@@ -50,6 +56,21 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
     document.getElementById("listButton").addEventListener("click", function () {
         document.location.href = "index.html#list";
+        location.reload();
+    });
+
+    document.getElementById("deleteButton").addEventListener("click", function () {
+        let expenseId = localStorage.getItem('parm');
+        $.ajax({
+            type: "DELETE",
+            url: "/DeleteExpense/" + expenseId,
+            success: function(result){
+                alert(result);
+            },
+            error: function (xhr, textStatus, errorThrown){
+                alert("Server could not delete Expense with ID: " + ID)
+            }
+        });
     });
     
     $(document).on("pagebeforeshow", "#details", function (event) {   
