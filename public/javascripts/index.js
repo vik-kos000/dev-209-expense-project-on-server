@@ -2,17 +2,8 @@ let ExpenseArray = [];
 let selectedType = "Not selected";
 
 document.addEventListener("DOMContentLoaded", function (event) {
-    //pre- populate the array
-    //ExpenseArray.push ( new ExpenseObject("Laptop", 1100, "2004-22-12", "Mall", "School")  );
-    //ExpenseArray.push ( new ExpenseObject("Strawberries", 5, "2006-12-10", "Mall", "Food")  );
-    //ExpenseArray.push ( new ExpenseObject("Blanket", 30, "2005-25-11", "Mall", "Home")  );
-
-
+    
     createList();
-
-    //for (let i = 0; i < ExpenseArray.length; i++) {
-            //console.log(ExpenseArray[i].show());
-    //}
 
 
     document.getElementById("addExpense").addEventListener("click", function () {
@@ -34,9 +25,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
             }
         });
 
-        //ExpenseArray.push(newExpense());
-
-        //console.log(ExpenseArray[ExpenseArray.length - 1].show());
+    
         
         document.getElementById("name").value = "";
         document.getElementById("price").value = "";
@@ -79,7 +68,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
         
         ExpenseArray = JSON.parse(localStorage.getItem('ExpenseArray'));  
         
-        //console.log(ExpenseArray[localID]);
+        
         
         let pointer = findExpense(localID)
         

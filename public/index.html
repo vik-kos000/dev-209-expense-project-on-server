@@ -41,8 +41,22 @@
                     <img src="images/expenses.jpg" alt="picture of expense">
                     <br>
                     <br>
-                    This is the application that will keep track of your expenses.
-                    <a href="#input">Click for input</a>
+                    <div class="container">
+                        <div class="car text-center">
+                            <div class="card-header">
+                                DEV209 Final Project
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">Welcome to our project application</h5>
+                                <p class="card-text">This is the application that will keep track of your expenses.</p>
+                                <a href="#input" class=" btn btn-primary" style="color:white;">Click Here to start!</a>
+                            </div>
+                            <div class="card-footer text-body-secondary">
+                                Let's start tracking!
+                            </div>
+
+                        </div>
+                </div>
                 </div>
             </div>
         </div>
@@ -71,19 +85,19 @@
                 <h1>Enter your expense!</h1>
                 <br>
                 <form id="expenseForm">
-                    <label for="name">Name of Expense:</label>
+                    <label for="name" class="form-label">Name of Expense:</label>
                     <input type="text" id="name" name="name" required>
 
-                    <label for="price">Price:</label>
+                    <label for="price" class="form-label">Price:</label>
                     <input type="number" id="price" name="price" required>
 
-                    <label for="date">Date:</label>
+                    <label for="date" class="form-label">Date:</label>
                     <input type="date" id="date" name="date" required>
 
-                    <label for="locationName">Location Name:</label>
+                    <label for="locationName" class="form-label">Location Name:</label>
                     <input type="text" id="locationName" name="locationName">
 
-                    <label for="select-type">Select a category</label>
+                    <label for="select-type" class="form-label">Select a category</label>
                     <select name="select-type" id="select-type">
                         <option disabled selected value> Select an option </option>
                         <option value="Food">Food</option>
@@ -126,7 +140,8 @@
                 <br>
                 <ul id="expenseList" data-role="listview"></ul>
                 <br>
-                <a href="#input">Add Another Expense</a>
+                <!--<a href="#input">Add Another Expense</a> -->
+                <a href="#input" class="btn btn-primary" style="color:white;">Add Another Expense</a>
             </div> 
         </div>
 
@@ -149,19 +164,20 @@
         </div>
 
         <div data-role="content" data-theme='b'>
-            <div class="container">
-                <br>
-                <h1>Expense Detail</h1>
-                <div id="expenseDetail">
-                    <br>
+            <div class="card">
+                <div class="card-body">
+                  <h1 class="card-title">Expense Detail</h1>
+                  <div id="expenseDetail">
                     <p id="Name"></p>
                     <p id="Price"></p>
                     <p id="Date"></p>
                     <p id="LocationName"></p>
                     <p id="Category"></p>
-                    <button id="deleteButton">Delete Expense</button>
+                    <button id="deleteButton" class="btn btn-danger">Delete Expense</button>
+                  </div>
                 </div>
-            </div>
+              </div>
+              
             <div id="listButtonContainer">
                 <button id="listButton">Back to List</button>
             </div>
